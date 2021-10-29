@@ -1,5 +1,6 @@
 ﻿using BookingMovie.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace BookingMovie.Controllers
         [HttpGet("{id}")]
         public Ve Get(int id)
         {
-            return veXemPhimContext.Ves.SingleOrDefault(x => x.MaVe == id);
+            return veXemPhimContext.Ves.Include(x=>x.IdChiTietChieuNavigation).Include(x=>x.IdUserNavigation).SingleOrDefault(x => x.MaVe == id);
         }
 
         // POST api/<VeController>

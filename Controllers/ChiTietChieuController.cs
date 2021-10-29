@@ -1,5 +1,6 @@
 ﻿using BookingMovie.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace BookingMovie.Controllers
         [HttpGet("{id}")]
         public ChiTietChieu Get(int id)
         {
-            return veXemPhimContext.ChiTietChieus.SingleOrDefault(x => x.IdChiTietChieu == id);
+            return veXemPhimContext.ChiTietChieus.Include(x=>x.IdPhimNavigation).Include(x=>x.IdPhongNavigation).SingleOrDefault(x => x.IdChiTietChieu == id);
         }
 
         // POST api/<ChiTietChieuController>

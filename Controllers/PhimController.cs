@@ -1,5 +1,6 @@
 ﻿using BookingMovie.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace BookingMovie.Controllers
         [HttpGet("{id}")]
         public Phim Get(int id)
         {
-            return veXemPhimContext.Phims.SingleOrDefault(x => x.IdPhim == id);
+            return veXemPhimContext.Phims.Include(x=>x.IdTheLoaiNavigation).SingleOrDefault(x => x.IdPhim == id);
 
         }
 
