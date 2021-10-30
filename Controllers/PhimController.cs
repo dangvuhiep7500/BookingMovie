@@ -23,7 +23,7 @@ namespace BookingMovie.Controllers
         [HttpGet]
         public IEnumerable<Phim> Get()
         {
-            return veXemPhimContext.Phims;
+            return veXemPhimContext.Phims.Include(x => x.IdTheLoaiNavigation);
         }
 
         // GET api/<PhimController>/5
@@ -33,7 +33,6 @@ namespace BookingMovie.Controllers
             return veXemPhimContext.Phims.Include(x=>x.IdTheLoaiNavigation).SingleOrDefault(x => x.IdPhim == id);
 
         }
-
         // POST api/<PhimController>
         [HttpPost]
         public void Post([FromBody] Phim phim)

@@ -23,7 +23,7 @@ namespace BookingMovie.Controllers
         [HttpGet]
         public IEnumerable<ChiTietChieu> Get()
         {
-            return veXemPhimContext.ChiTietChieus;
+            return veXemPhimContext.ChiTietChieus.Include(x => x.IdPhimNavigation).Include(x => x.IdPhongNavigation);
         }
 
         // GET api/<ChiTietChieuController>/5
